@@ -1,0 +1,15 @@
+public class MyLinkedList {
+    private Node head;
+
+    public MyLinkedList() {
+	head = null;
+    }
+
+    public void add(Strings) {
+	Node tmp = new Node(s);
+	tmp.setNext(head);
+	head = tmp;
+    }
+    
+
+}
