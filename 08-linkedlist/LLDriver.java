@@ -13,7 +13,7 @@ public class LLDriver {
 	System.out.println(L);
 	System.out.println("<-----ADDING TO LINKED LIST INDEX----->");
 	L.add(3,"indexzero");
-	System.out.println(L.length());
+	System.out.println(L.size());
 	System.out.println(L);
 	System.out.println("<-----ADDING TO LINKED LISTINDEX :OUT OF BOUNDS----->");
 	L.add(5,"indexzero");

@@ -1,14 +1,15 @@
 import java.util.*;
 import java.io.*;
-//got stuck on adding to the last element
-//code mostly works, but the exceptions need work.
+//fixed up some code
 public class MyLinkedList {
     private Node head;
+    private int size;
 
     public MyLinkedList() {
 	head = null;
     }
 
+    //add
     public void add(String d) {
 	Node tmp = new Node(d);
 	//head = tmp;
@@ -16,122 +17,81 @@ public class MyLinkedList {
 	head=tmp;
     }
     
+    //toString
     public String toString() {
-
-	//can't get next from null
-	Node tmp = head;
-	
-	String s = " "+tmp.getData();
-	//	s = "" + head + head.getNext() + head.getNext().getNext();
-	while(tmp.getNext()!=null) {
-	    tmp = tmp.getNext();
-	    s = s + ",  " + tmp.getData();
-	      
+	String s = "";
+	Node temp = head;
+	while (temp != null) {
+	    s = s + temp + " ";
+	    temp = temp.getNext();
 	}
 	return s;
     }
     
+    //ADD AT POSITION
     public void add(int i, String s) {
-	int counter = 0;
+	if (i == 0) {
+	    this.add(s);
+	    return;
+	}
 	Node tmp = head;
-	Node last = new Node(s);
-	try{
-	    if(i == 0)
-		add(s);
-	    else {
-		while(tmp.getNext()!=null) {
-		   
-		    if(counter == i - 1) {
-				if(counter == length() - 2){
-				    tmp.getNext().setNext(last);
-				}
-			Node tmp2 = head;
-			head = tmp.getNext();
-			add(s);
-			tmp2.setNext(head);
-			head = tmp2;
-		    }
-		    
-		    
-		    
-		    tmp = tmp.getNext();
-		    counter++;    
-		}
-	    	if(tmp.getNext() == null) 
-		    throw new IndexOutOfBoundsException("Index " + i + " is out of bounds!");
-	    }
-	}
-	catch (IndexOutOfBoundsException e) {
-	    System.out.println(e.getMessage());
-	}
+	Node n = new Node(s);
+	for (int j = 0; j < i - 1; j ++) 
+	    tmp = tmp.getNext();
+	n.setNext(tmp.getNext());
+	tmp.setNext(n);
+	size++;
+    }
+    
+    //SIZE
+    public int size() {
+	return size;
     }
 
-    public int length() {
-	int count = 0;
-	Node tmp = head;
-	while(tmp.getNext() != null)
-	    {
-		tmp = tmp.getNext();
-		count++;     
-	    }
-	return count + 1;
-	
-    }
-
+    //GET
     public String get(int i) {
-	int counter = 0;
 	Node tmp = head;
-	try{
-	while(tmp.getNext() != null) {
-	     if(counter == i) {
-		 return tmp.getData();
-	     }
-	     if(counter == i - 1 && counter == length() - 2){
-		 return tmp.getNext().getData();
-	     }
-	     tmp=tmp.getNext();
-	     counter++;
-	}
-	if(tmp.getNext() == null) 
-		    throw new IndexOutOfBoundsException("Index " + i + " is out of bounds!");
-	}
-	catch (IndexOutOfBoundsException e) {
-	    System.out.println(e.getMessage());
-	}
-
-	return null;
+	for (int j = 0; j < i; j++)
+	    tmp = tmp.getNext();
+	return "" + tmp;
     }  
-
+    
+    //SET
     public String set(int i, String s) {
-	int counter = 0;
-	String old = "";
 	Node tmp = head;
-	try{
-	    
-		while(tmp.getNext()!=null) {
-		    
-		    if(counter == i) {
-			old = tmp.getData();
-			tmp.setData(s);
-		    }
-		    if(counter == i - 1 && counter == length() - 2){
-			old = tmp.getNext().getData();
-			tmp.getNext().setData(s);
-		    }
-		    tmp = tmp.getNext();
-		    counter++;    
-		}
-	    	if(tmp.getNext() == null) 
-		    throw new IndexOutOfBoundsException("Index " + i + " is out of bounds!");
-	    
-	}
-	catch (IndexOutOfBoundsException e) {
-	    System.out.println(e.getMessage());
-	}
+	String old = "";
+	for (int j = 0; j < i; j++)
+	    tmp = tmp.getNext();
+	old = tmp.getData();
+	tmp.setData(s);
 	return old;
+    }    
 
+    //REMOVE
+    public String remove(int i) {
+	Node tmp = head;
+	Node x;
+	String returnstring = "";
+	for (int j = 0; j < i - 1; j++)
+	    tmp = tmp.getNext();
+	returnstring = tmp.getNext().getData();
+	x = tmp.getNext().getNext();
+	tmp.setNext(x);
+	return returnstring;
+    }
+
+    //FIND
+    public int find(String s) {
+	Node tmp = head;
+	int location = -1;
+	for (int j = 0; j < this.size(); j++) {
+	    if (tmp.getData() == s) {
+		location = j;
+		break;
+	    }
+	    tmp = tmp.getNext();
+	}
+	return location;
     }
     
 }    
-
-
