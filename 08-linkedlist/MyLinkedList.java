@@ -15,6 +15,7 @@ public class MyLinkedList {
 	//head = tmp;
 	tmp.setNext(head);
 	head=tmp;
+    size++;
     }
     
     //toString
@@ -77,6 +78,7 @@ public class MyLinkedList {
 	returnstring = tmp.getNext().getData();
 	x = tmp.getNext().getNext();
 	tmp.setNext(x);
+    size--;
 	return returnstring;
     }
 
