@@ -1,5 +1,7 @@
 // Worked with Lise Ho
 // had a hard time understanding E
+
+//review classcode, for z's version
 import java.util.*;
 import java.io.*;
 public class MyLinkedList<E> implements Iterable<E>{

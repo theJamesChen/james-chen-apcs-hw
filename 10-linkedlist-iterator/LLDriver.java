@@ -12,6 +12,7 @@ public class LLDriver{
 	L.add(L.size()-1, "John");
 	System.out.println(L);
 	L.add("Terri");
+	System.out.println(L);
 
 	System.out.println("\nTESTING ITERATOR AND ITERABLE" );
 	MyLLIterator<String> it = L.iterator();
