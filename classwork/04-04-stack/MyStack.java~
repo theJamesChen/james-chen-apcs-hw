@@ -1,0 +1,23 @@
+public class MyStack {
+
+    private Node top;
+   
+    //constructor 1
+
+   
+    public MyStack(){
+	top = null;
+    }
+
+    //push 2
+
+    //pop
+
+    //pee
+
+    //isEmpty
+
+    //toString 3
+
+
+}
