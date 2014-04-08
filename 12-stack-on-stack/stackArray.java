@@ -1,25 +1,31 @@
 import java.io.*;
 import java.util.*;
 
-public class stackArray {
 
-    //isn't top always 0 then?
+public class stackArray {
 
     private int top;
     private int numElts;
     private String[] array;
-    private int arraysize = 2;
+    private int arraysize = 10;
     
     public stackArray() {
 	
 	array = new String[arraysize];
-	int top = -1;
+	int top = 0;
 	numElts = 0;
     }
 
     //push
     public void push(String s) {
-	if (numElts == 0){
+	if (numElts == array.length) {
+	    array = Arrays.copyOf(array, (int) (1.5 * numElts));
+	} 
+	array[numElts++] = s;
+	top = numElts-1;
+	
+	    
+	/*	if (numElts == 0){
 	    array[0]=s;
 	    top = 0;
 	    numElts++;
@@ -44,10 +50,12 @@ public class stackArray {
 	    top = 0;
 
 	}
+	*/
     }
 
     //pop
     public String pop() {
+	/*
 	String ret = array[top];
 	if (numElts == 0) {
             throw new NoSuchElementException("Empty Stack");
@@ -60,7 +68,10 @@ public class stackArray {
 	array = tmp;
 	numElts--;
 	return ret;
+	*/
+	top --;
 	
+	return array[numElts-1];
     }
 
 
@@ -77,7 +88,7 @@ public class stackArray {
     //toString
     public String toString() {
 	String s = "";
-	for(int i = 0;i<numElts; i ++) {
+	for(int i = top;i>=0; i --) {
 	    s = s +" "+ array[i];
 	}
 	return s;
@@ -91,6 +102,8 @@ public class stackArray {
 	a.push("three");
 	a.push("four");
 	System.out.println(a);
+	//System.out.println(a.numElts);
+	//System.out.println(a.top);
 	System.out.println(a.isEmpty());
 	System.out.println(a.pop());
 	System.out.println(a);
