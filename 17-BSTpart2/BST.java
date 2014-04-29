@@ -53,6 +53,48 @@ public class BST {
 	}
     }
     
+    //delete - took tasmiur's code for now, I was absent, going to review.
+    public Node delete(Node root, int k){
+	Node s, s2, n;
+	if(root.getData() == k){
+	    Node lt, rt;
+	    lt = root.getLeft();
+	    rt = root.getRight();
+	    
+	    if(lt == null && rt == null){
+		return null;
+	    }
+	    else if (lt == null){
+		s = rt;
+		return s;
+	    }
+	    else if (rt == null){
+		s = lt;
+		return s;
+	    }
+	    else{
+		s2 = rt;
+		s = rt;
+		while(s.getLeft() != null){
+		    s = s.getLeft();
+		    s.setLeft(lt);
+		    return s2;
+		}
+	    }
+	}
+	if(k < root.getData()){
+	    n = delete(root.getLeft(), k);
+	    root.setLeft(n);
+	}
+	else{
+	    n = delete(root.getRight(), k);
+	    root.setRight(n);
+	}
+	return root;
+    }
+    
+    
+    
     
     
     
