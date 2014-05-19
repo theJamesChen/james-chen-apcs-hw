@@ -92,6 +92,27 @@ public class BST {
 	}
 	return root;
     }
+
+    public void traverse (Node n) {
+	if (n== null) 
+	    System.out.print("");
+	else {
+	    //prints it in order
+	    traverse(n.getLeft());
+	    System.out.println(n.getData());
+	    traverse(n.getRight());
+	}
+
+    }
+    public static void main (String[] args) {
+	BST x = new BST(new Node(15));
+	for (int i = 1; i<40; i+=2) {
+	    x.insert(new Node(i));
+	    System.out.println(new Node(i));
+
+	}
+
+    }
     
     
     
